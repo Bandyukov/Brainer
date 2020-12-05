@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.brainer.title.TitleFragment" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".title.TitleFragment">
+
+        <TextView
+            android:id="@+id/textViewGreetings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/greetings"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/buttonEasyLevel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonEasyLevel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@android:color/black"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/easy"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline2"
+            tools:layout_editor_absoluteY="256dp" />
+
+        <Button
+            android:id="@+id/buttonMiddleLevel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@android:color/black"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/middle"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonEasyLevel" />
+
+        <Button
+            android:id="@+id/buttonHardLevel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@android:color/black"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/hard"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonMiddleLevel" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:text="@string/levels"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/buttonEasyLevel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/button"
+            app:layout_constraintBottom_toTopOf="@id/buttonEasyLevel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGreetings"
+            app:srcCompat="?attr/actionModePasteDrawable" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

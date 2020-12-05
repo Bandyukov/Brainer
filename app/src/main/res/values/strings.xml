@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Brainer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hard">СЛОЖНЫЙ</string>
+    <string name="middle">СРЕДНИЙ</string>
+    <string name="easy">ЛЁГКИЙ</string>
+    <string name="greetings">Тренажёр для мозгов</string>
+    <string name="levels">Уровни</string>
+    <string name="you_gained">Вы набрали\n%d %s</string>
+    <string name="your_records">Рекорды по уровням:\nЛёгкий - %d\nСредний - %d\nСложный - %d\n</string>
+    <string name="rec">Рекорды по уровням:</string>
+    <string name="table_records">Лёгкий - %d\nСредний - %d\nСложный - %d\n</string>
+    <string name="again">Заново</string>
+    <string name="button">button</string>
+</resources>
