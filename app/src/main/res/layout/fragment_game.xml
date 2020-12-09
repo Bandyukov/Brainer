@@ -88,6 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:visibility="invisible"
+            android:text="@{gameViewModel.currentTime}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:visibility="invisible"
+            android:text="@{@string/digit(gameViewModel.score)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,6 +108,7 @@
             android:layout_height="wrap_content"
             android:textSize="36sp"
             android:textStyle="bold"
+            android:text="@{gameViewModel.timeBeforeStart}"
             app:layout_constraintBottom_toBottomOf="@+id/textViewQuestion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

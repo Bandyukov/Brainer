@@ -1,6 +1,9 @@
 package com.example.brainer.game
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.CountDownTimer
+import android.preference.PreferenceManager
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +17,10 @@ class GameViewModel(mod: Int) : ViewModel() {
     private val _level_ = MutableLiveData<Int>()
     val level: LiveData<Int>
         get() = _level_
+
+    private val _score_ = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score_
 
     private val _min_ = MutableLiveData<Int>()
     val min: LiveData<Int>
@@ -47,30 +54,57 @@ class GameViewModel(mod: Int) : ViewModel() {
     val question: LiveData<String>
         get() = _question_
 
-    public lateinit var arrayOfAnswers: Array<Int>
+    public val arrayOfAnswers: Array<Int> = Array(4) {0}
+
+    private val _eventGameFinished_ = MutableLiveData<Boolean>()
+    val eventGAmeFinished: LiveData<Boolean>
+        get() = _eventGameFinished_
+
+    public lateinit var context: Context
 
 
     init {
         when (mod) {
-            1 -> setLevelSettings(1, 5, 30, 30_000L)
+            1 -> setLevelSettings(1, 5, 30, 5_000L)
             2 -> setLevelSettings(2, 33, 99, 45_000L)
             else -> setLevelSettings(3, 101, 499, 60_000L)
         }
 
         _gameIsStarted_.value = false
+        _eventGameFinished_.value = false
+        _score_.value = 0
 
         val timerStartGame = object : CountDownTimer(time.value!!, 1_000) {
 
             override fun onTick(p0: Long) {
                 var seconds = (p0 / 1_000)
-                val minutes = seconds % 60
+                val minutes = seconds / 60
                 seconds %= 60
                 _currentTime_.value =
                     String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
             }
 
             override fun onFinish() {
-               // Toast.makeText(GameFragment::class.java, "ENDGAME", Toast.LENGTH_SHORT).show()
+                _eventGameFinished_.value = true
+
+                val preference: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+                val score1: Int
+                val score2: Int
+                val score3: Int
+
+                val s1: String = "easy"
+                val s2: String = "middle"
+                val s3: String = "hard"
+                var s: String
+
+                when (_level_.value) {
+                    1 -> s = s1
+                    2 -> s = s2
+                    else -> s = s3
+                }
+
+                if (_score_.value!! > preference.getInt(s, 0))
+                    preference.edit().putInt(s, _score_.value!!).apply()
             }
         }
 
@@ -88,6 +122,7 @@ class GameViewModel(mod: Int) : ViewModel() {
         }
 
         timerPrepareGame.start()
+        playGame()
 
     }
 
@@ -139,13 +174,21 @@ class GameViewModel(mod: Int) : ViewModel() {
         generateQuestion()
         val rightAnswerPosition = (0..3).random()
 
-        arrayOfAnswers = Array(4) {
-            if (it != rightAnswerPosition) generateWrongAnswer() else _rightAnswer_.value!!
-        }
+        for (i in 0..arrayOfAnswers.lastIndex)
+            if (i != rightAnswerPosition)
+                arrayOfAnswers[i] = generateWrongAnswer()
+            else
+                arrayOfAnswers[i] = _rightAnswer_.value!!
 
     }
 
-    public fun onButtonPressed() {}
+    public fun onCorrect() {
+        _score_.value = _score_.value?.plus(1)
+    }
+
+    public fun gameIsFinished() {
+        _eventGameFinished_.value = false
+    }
 
 
 }

@@ -13,4 +13,9 @@
     <string name="table_records">Лёгкий - %d\nСредний - %d\nСложный - %d\n</string>
     <string name="again">Заново</string>
     <string name="button">button</string>
+    <string name="digit">%d</string>
+    <string name="right">Правильно!</string>
+    <string name="wrong">Неверно!</string>
+    <string name="your_result">Твой результат</string>
+    <string name="main_menu">Главное меню</string>
 </resources>
