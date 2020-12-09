@@ -37,33 +37,20 @@ class TitleFragment : Fragment() {
         for (now: Button in buttons) {
             now.setOnClickListener() {
                 val btn: Button = it as Button
-                val max: Int
+                /*val max: Int
                 val min: Int
-                val time: Int
+                val time: Int*/
+                val mod: Int
 
                 when (btn.id) {
-                    buttons[0].id -> {
-                        min = 5
-                        max = 30
-                        time = 30_000
-                    }
-                    buttons[1].id -> {
-                        min = 33
-                        max = 99
-                        time = 45_000
-                    }
-                    else -> {
-                        min = 101
-                        max = 499
-                        time = 60_000
-                    }
+                    buttons[0].id -> mod = 1
+                    buttons[1].id -> mod = 2
+                    else -> mod = 3
                 }
 
                 //var levelObject: LevelObject = LevelObject(min, max, time)
                 val bundle: Bundle = Bundle()
-                bundle.putInt("min", min)
-                bundle.putInt("max", max)
-                bundle.putInt("time", time)
+                bundle.putInt("mod", mod)
 
                 findNavController().navigate(R.id.action_titleFragment_to_gameFragment, bundle)
 
