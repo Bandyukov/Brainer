@@ -4,12 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.CountDownTimer
 import android.preference.PreferenceManager
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.brainer.LevelObject
-import com.example.brainer.title.TitleViewModel
 import java.util.*
 
 class GameViewModel(mod: Int) : ViewModel() {

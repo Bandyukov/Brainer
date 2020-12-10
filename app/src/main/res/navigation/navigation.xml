@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_recordsFragment"
+            app:destination="@id/recordsFragment" />
     </fragment>
 
     <fragment
@@ -33,4 +36,8 @@
             android:id="@+id/action_scoreFragment_to_titleFragment"
             app:destination="@id/titleFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="com.example.brainer.dialog.RecordsFragment"
+        android:label="RecordsFragment" />
 </navigation>

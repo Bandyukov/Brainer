@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.brainer.LevelObject
 import com.example.brainer.R
 import com.example.brainer.databinding.FragmentTitleBinding
 
@@ -57,6 +57,9 @@ class TitleFragment : Fragment() {
             }
         }
 
+        binding.imageButton.setOnClickListener{
+            it.findNavController().navigate(R.id.action_titleFragment_to_recordsFragment)
+        }
 
         return binding.root
     }

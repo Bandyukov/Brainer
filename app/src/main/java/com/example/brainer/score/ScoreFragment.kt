@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.brainer.R
 import com.example.brainer.databinding.FragmentScoreBinding
@@ -42,7 +43,7 @@ class ScoreFragment : Fragment() {
             binding.textViewHardRecord.text = preferences.getInt("hard", 0).toString()
 
             binding.button.setOnClickListener {
-                findNavController().navigate(R.id.action_scoreFragment_to_titleFragment)
+                it.findNavController().navigate(R.id.action_scoreFragment_to_titleFragment)
             }
         }
 

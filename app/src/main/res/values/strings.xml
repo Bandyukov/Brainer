@@ -18,4 +18,6 @@
     <string name="wrong">Неверно!</string>
     <string name="your_result">Твой результат</string>
     <string name="main_menu">Главное меню</string>
+    <string name="records">МОИ РЕКОРДЫ</string>
+    <string name="level">Уровень: %s</string>
 </resources>
