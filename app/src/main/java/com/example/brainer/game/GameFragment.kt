@@ -28,7 +28,7 @@ class GameFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         //val binding= DataBindingUtil<>.inflate(inflater, R.layout.fragment_game, container, false)
         val binding: FragmentGameBinding = DataBindingUtil.inflate(
@@ -78,7 +78,7 @@ class GameFragment : Fragment() {
 
         viewModel.eventGAmeFinished.observe(viewLifecycleOwner, {
             if (it) {
-                val bun: Bundle = Bundle()
+                val bun = Bundle()
                 bun.putInt("score", viewModel.score.value!!)
                 findNavController().navigate(R.id.action_gameFragment_to_scoreFragment, bun)
                 viewModel.gameIsFinished()

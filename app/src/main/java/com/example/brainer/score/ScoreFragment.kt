@@ -7,11 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.brainer.R
 import com.example.brainer.adapters.RecordAdapter
@@ -26,15 +24,16 @@ class ScoreFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FragmentScoreBinding = inflate(inflater,
             R.layout.fragment_score,
             container,
             false)
 
         val bundle = this.arguments
-        if (bundle != null) {
-            val score = bundle.getInt("score")
+
+        bundle?.let { bun ->
+            val score = bun.getInt("score")
             scoreViewModelFactory = ScoreViewModelFactory(score)
             viewModel = ViewModelProvider(this, scoreViewModelFactory).get(ScoreViewModel::class.java)
 
@@ -42,11 +41,10 @@ class ScoreFragment : Fragment() {
             binding.scoreViewModel = viewModel
 
             val records: List<Record> = List(3) {
-                val s: String
-                when (it) {
-                    0 -> s = "easy"
-                    1 -> s = "middle"
-                    else -> s = "hard"
+                val s = when (it) {
+                    0 -> "easy"
+                    1 -> "middle"
+                    else -> "hard"
                 }
                 Record(it + 1, preferences.getInt(s, 0))
             }
