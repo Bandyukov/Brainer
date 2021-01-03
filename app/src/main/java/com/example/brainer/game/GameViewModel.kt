@@ -62,9 +62,9 @@ class GameViewModel(mod: Int) : ViewModel() {
 
     init {
         when (mod) {
-            1 -> setLevelSettings(1, 5, 30, 5_000L)
-            2 -> setLevelSettings(2, 33, 99, 45_000L)
-            else -> setLevelSettings(3, 101, 499, 60_000L)
+            1 -> setLevelSettings(1, 5, 30, 30_000L)
+            2 -> setLevelSettings(2, 11, 50, 50_000L)
+            else -> setLevelSettings(3, 101, 499, 70_000L)
         }
 
         _gameIsStarted_.value = false
@@ -92,12 +92,12 @@ class GameViewModel(mod: Int) : ViewModel() {
                 val s1: String = "easy"
                 val s2: String = "middle"
                 val s3: String = "hard"
-                var s: String
+                val s: String
 
-                when (_level_.value) {
-                    1 -> s = s1
-                    2 -> s = s2
-                    else -> s = s3
+                s = when (_level_.value) {
+                    1 -> s1
+                    2 -> s2
+                    else -> s3
                 }
 
                 if (_score_.value!! > preference.getInt(s, 0))
@@ -160,10 +160,10 @@ class GameViewModel(mod: Int) : ViewModel() {
     }
 
     private fun generateWrongAnswer(lev: Int): Int {
-        val ans = _rightAnswer_.value!!
-        var a: Int = ((ans - lev * 10)..(ans + lev * 10)).random()
+        val ans: Int = _rightAnswer_.value!!
+        var a: Int = ((ans - (lev - 1) * 10)..(ans + (lev + 1) * 10)).random()
         while (a == ans)
-            a = ((ans - lev * 10)..(ans + lev * 10)).random()
+            a = ((ans - (lev - 1) * 10)..(ans + (lev + 1) * 10)).random()
         return a
     }
 
@@ -171,9 +171,22 @@ class GameViewModel(mod: Int) : ViewModel() {
         generateQuestion()
         val rightAnswerPosition = (0..3).random()
 
+        //var flag: Boolean = true
+
         for (i in 0..arrayOfAnswers.lastIndex)
             if (i != rightAnswerPosition)
-                arrayOfAnswers[i] = generateWrongAnswer()
+                if (_level_.value == 1)
+                    arrayOfAnswers[i] = generateWrongAnswer()
+                else
+                    /*{
+                    var value: Int
+                    if (flag) {
+                        val a = (0..1).random()
+                        if (a == 1)
+                            value = _rightAnswer_.value!! - 10
+                        flag = false
+                    }*/
+                    arrayOfAnswers[i] = generateWrongAnswer(_level_.value!!)
             else
                 arrayOfAnswers[i] = _rightAnswer_.value!!
 

@@ -12,8 +12,11 @@ import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.brainer.R
+import com.example.brainer.adapters.RecordAdapter
 import com.example.brainer.databinding.FragmentScoreBinding
+import com.example.brainer.helperObjects.Record
 
 class ScoreFragment : Fragment() {
 
@@ -38,9 +41,19 @@ class ScoreFragment : Fragment() {
             val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
             binding.scoreViewModel = viewModel
 
-            binding.textViewEasyRecord.text = preferences.getInt("easy", 0).toString()
-            binding.textViewMiddleRecord.text = preferences.getInt("middle", 0).toString()
-            binding.textViewHardRecord.text = preferences.getInt("hard", 0).toString()
+            val records: List<Record> = List(3) {
+                val s: String
+                when (it) {
+                    0 -> s = "easy"
+                    1 -> s = "middle"
+                    else -> s = "hard"
+                }
+                Record(it + 1, preferences.getInt(s, 0))
+            }
+
+            val adapter = RecordAdapter(records)
+            binding.RecyclerViewRecordsForScoreFragment.layoutManager = LinearLayoutManager(this.context)
+            binding.RecyclerViewRecordsForScoreFragment.adapter = adapter
 
             binding.button.setOnClickListener {
                 it.findNavController().navigate(R.id.action_scoreFragment_to_titleFragment)

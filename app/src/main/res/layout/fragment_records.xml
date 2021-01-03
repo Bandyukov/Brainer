@@ -20,6 +20,10 @@
             android:text="@string/records"
             android:textSize="25sp"
             android:textColor="@android:color/black"
+            android:shadowColor="@color/colorAccent"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1.5"
             android:textStyle="bold"
             android:layout_marginTop="30dp"/>
 

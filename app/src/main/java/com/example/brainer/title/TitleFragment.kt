@@ -1,10 +1,8 @@
 package com.example.brainer.title
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +20,7 @@ class TitleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding: FragmentTitleBinding = DataBindingUtil.inflate(
             inflater,
@@ -37,9 +35,6 @@ class TitleFragment : Fragment() {
         for (now: Button in buttons) {
             now.setOnClickListener() {
                 val btn: Button = it as Button
-                /*val max: Int
-                val min: Int
-                val time: Int*/
                 val mod: Int
 
                 when (btn.id) {
@@ -48,8 +43,7 @@ class TitleFragment : Fragment() {
                     else -> mod = 3
                 }
 
-                //var levelObject: LevelObject = LevelObject(min, max, time)
-                val bundle: Bundle = Bundle()
+                val bundle = Bundle()
                 bundle.putInt("mod", mod)
 
                 findNavController().navigate(R.id.action_titleFragment_to_gameFragment, bundle)
@@ -61,35 +55,24 @@ class TitleFragment : Fragment() {
             it.findNavController().navigate(R.id.action_titleFragment_to_recordsFragment)
         }
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
-    /*fun onClickStartGame(view: View) {
-        val btn: Button = view as Button
-        val max: Int
-        val min: Int
-        val time: Long
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
-        when (btn.id) {
-            buttons[0].id -> {
-                min = 5
-                max = 30
-                time = 30_000L
-            }
-            buttons[1].id -> {
-                min = 33
-                max = 99
-                time = 45_000L
-            }
-            buttons[2].id -> {
-                min = 101
-                max = 499
-                time = 60_000L
-            }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when (id) {
+            R.id.info -> findNavController().navigate(R.id.action_titleFragment_to_aboutGameFragment)
+            R.id.settings -> findNavController().navigate(R.id.action_titleFragment_to_settingsFragment)
         }
-
-
-    }*/
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }

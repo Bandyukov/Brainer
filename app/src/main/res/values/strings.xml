@@ -20,4 +20,9 @@
     <string name="main_menu">Главное меню</string>
     <string name="records">МОИ РЕКОРДЫ</string>
     <string name="level">Уровень: %s</string>
+    <string name="best_results">Лучшие результаты</string>
+    <string name="about_game">Об игре</string>
+    <string name="settings">Настройки</string>
+    <string name="info">Игра поднимет твой IQ до 200!!!</string>
+    <string name="no_settings">Настроеек нет</string>
 </resources>
