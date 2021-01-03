@@ -37,16 +37,16 @@ class TitleFragment : Fragment() {
                 val btn: Button = it as Button
                 val mod: Int
 
-                when (btn.id) {
-                    buttons[0].id -> mod = 1
-                    buttons[1].id -> mod = 2
-                    else -> mod = 3
+                mod = when (btn.id) {
+                    buttons[0].id -> 1
+                    buttons[1].id -> 2
+                    else -> 3
                 }
 
                 val bundle = Bundle()
                 bundle.putInt("mod", mod)
 
-                findNavController().navigate(R.id.action_titleFragment_to_gameFragment, bundle)
+                it.findNavController().navigate(R.id.action_titleFragment_to_gameFragment, bundle)
 
             }
         }
